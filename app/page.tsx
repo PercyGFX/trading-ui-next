@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { Camera, Package2, Home, ShoppingCart, Package } from "lucide-react";
+import { Camera, Package2, Home, ShoppingCart, Package, Plus } from "lucide-react";
 import Link from "next/link";
+
 
 export default function Page() {
   return (
@@ -42,9 +43,19 @@ export default function Page() {
         </nav>
       </aside>
       {/* left column */}
-      <div className=" flex justify-between lg:pr-14">
-        <div>left column</div>
-        <div>right column</div>
+      <div className=" flex lg:pr-14">
+        <div className="flex flex-col w-8/12">
+          <div className=" bg-background h-14 border-b "></div>
+        </div>
+        <div className="border-l w-4/12 bg-background h-screen">
+          <div className=" bg-background h-14 border-b ml-5 mr-4 p-1.5 flex justify-between items-center">
+            <p className=" uppercase font-semibold p-3">news</p>
+            <Plus />
+          </div>
+          <div className="flex-1 overflow-y-auto m-5">
+            
+          </div>
+        </div>
       </div>
     </div>
   );
