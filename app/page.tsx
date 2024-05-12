@@ -1,4 +1,7 @@
+'use client'
 import Image from "next/image";
+import { ReactNode } from "react";
+
 import {
   Plus,
   EllipsisVertical,
@@ -19,6 +22,165 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
+import { DataTable } from "@/components/data-table";
+import { ColumnDef } from "@tanstack/react-table";
+
+interface DataType {
+  ticket: string;
+  symbol: string;
+  time: string;
+  type: string;
+  lot: string;
+  openPrice: string;
+  stopLoss: string;
+  takeProfit: string;
+  currentPrice: string;
+  swap: string;
+  profit: string;
+  icon: any;
+}
+
+const columns: ColumnDef<DataType>[] = [
+  {
+    accessorKey: "ticket",
+    header: "Ticket",
+  },
+  {
+    accessorKey: "symbol",
+    header: "Symbol",
+    cell: ({ getValue, row }: any) => (
+      <div className="flex items-center space-x-2">
+        <Avatar>
+          <AvatarFallback></AvatarFallback>
+        </Avatar>
+        <span>{getValue()}</span>
+      </div>
+    ),
+  },
+
+  {
+    accessorKey: "time",
+    header: "Time",
+    cell: ({ getValue }: any) => {
+      const [date, time] = getValue().split(" ");
+      return (
+        <div className=" flex flex-col items-center">
+          <span>{date}</span>
+          <br />
+          <span>{time}</span>
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "type",
+    header: "Type",
+    cell: ({ getValue }: any) => (
+      <span className="text-green-500">{getValue()}</span>
+    ),
+  },
+  {
+    accessorKey: "lot",
+    header: "Lot",
+  },
+  {
+    accessorKey: "openPrice",
+    header: "Open Price",
+  },
+  {
+    accessorKey: "stopLoss",
+    header: "Stop Loss",
+  },
+  {
+    accessorKey: "takeProfit",
+    header: "Take Profit",
+  },
+  {
+    accessorKey: "currentPrice",
+    header: "Current Price",
+  },
+  {
+    accessorKey: "swap",
+    header: "Swap",
+  },
+  {
+    accessorKey: "profit",
+    header: "Type",
+    cell: ({ getValue }: any) => (
+      <span className="text-green-500">{getValue()}</span>
+    ),
+  },
+
+  {
+    accessorKey: "icon",
+    header: <EllipsisVertical /> as any, 
+  },
+];
+
+const data = [
+  {
+    ticket: "2415959",
+    symbol: "AAPL",
+    time: "12:03:45 2024-03-13",
+    type: "BUY",
+    lot: "1",
+    openPrice: "1.12000,6698",
+    stopLoss: "0",
+    takeProfit: "0",
+    currentPrice: "1.09764",
+    swap: "-279.16",
+    profit: "12,234.000, 596",
+    icon: "",
+  },
+
+  {
+    ticket: "2415959",
+    symbol: "AAPL",
+    time: "12:03:45 2024-03-13",
+    type: "BUY",
+    lot: "1",
+    openPrice: "1.12000,6698",
+    stopLoss: "0",
+    takeProfit: "0",
+    currentPrice: "1.09764",
+    swap: "-279.16",
+    profit: "12,234.000, 596",
+    icon: "",
+  },
+
+  {
+    ticket: "2415959",
+    symbol: "AAPL",
+    time: "12:03:45 2024-03-13",
+    type: "BUY",
+    lot: "1",
+    openPrice: "1.12000,6698",
+    stopLoss: "0",
+    takeProfit: "0",
+    currentPrice: "1.09764",
+    swap: "-279.16",
+    profit: "12,234.000, 596",
+    icon: "",
+  },
+
+  {
+    ticket: "2415959",
+    symbol: "AAPL",
+    time: "12:03:45 2024-03-13",
+    type: "BUY",
+    lot: "1",
+    openPrice: "1.12000,6698",
+    stopLoss: "0",
+    takeProfit: "0",
+    currentPrice: "1.09764",
+    swap: "-279.16",
+    profit: "12,234.000, 596",
+    icon: "",
+  },
+
+  // Add more data objects as needed
+];
+
 
 export default function Page() {
   return (
@@ -112,11 +274,11 @@ export default function Page() {
           </div>
           {/* header end */}
 
-          <div className=" h-2/4 border-b">{/* chart area */}</div>
+          <div className=" h-3/5 border-b">{/* chart area */}</div>
           {/* data table area */}
           <div className=" bg-background">
             {/* accoutt rowrow */}
-            <div className=" h-16 border-b flex  justify-between items-center px-5">
+            <div className=" h-16 border-b flex  justify-between items-center px-5 overflow-scroll gap-x-2">
               <div className="flex items-center gap-4">
                 <Avatar className="hidden h-9 w-9 sm:flex">
                   <AvatarImage src="/usa.png" alt="Avatar" />
@@ -139,7 +301,7 @@ export default function Page() {
                     balance
                   </p>
 
-                  <p className="text-sm ">101,873.51 USD</p>
+                  <p className="text-sm text-nowrap ">101,873.51 USD</p>
                 </div>
               </div>
 
@@ -149,7 +311,7 @@ export default function Page() {
                     EQUITY
                   </p>
 
-                  <p className="text-sm ">99,237.07</p>
+                  <p className="text-sm text-nowrap  ">99,237.07</p>
                 </div>
               </div>
 
@@ -159,7 +321,7 @@ export default function Page() {
                     CREDIT
                   </p>
 
-                  <p className="text-sm ">0.00</p>
+                  <p className="text-sm  text-nowrap ">0.00</p>
                 </div>
               </div>
 
@@ -169,27 +331,27 @@ export default function Page() {
                     MARGIN
                   </p>
 
-                  <p className="text-sm ">3,931.98</p>
+                  <p className="text-sm text-nowrap  ">3,931.98</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-4">
                 <div className="grid gap-1">
-                  <p className="text-sm font-medium leading-none uppercase text-muted-foreground">
+                  <p className="text-sm font-medium leading-none uppercase text-muted-foreground text-nowrap ">
                     FREE MARGIN
                   </p>
 
-                  <p className="text-sm ">95,286.78</p>
+                  <p className="text-sm  text-nowrap ">95,286.78</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-4">
                 <div className="grid gap-1">
-                  <p className="text-sm font-medium leading-none uppercase text-muted-foreground">
+                  <p className="text-sm font-medium leading-none uppercase text-muted-foreground text-nowrap ">
                     MARGIN LEVEL
                   </p>
 
-                  <p className="text-sm ">2,523.38%</p>
+                  <p className="text-sm text-nowrap ">2,523.38%</p>
                 </div>
               </div>
 
@@ -199,7 +361,7 @@ export default function Page() {
                     PROFIT
                   </p>
 
-                  <p className="text-sm ">15,000,000</p>
+                  <p className="text-sm text-nowrap ">15,000,000</p>
                 </div>
               </div>
             </div>
@@ -218,10 +380,18 @@ export default function Page() {
                   Account History
                 </Button>
               </div>
+
               <div className=" flex gap-x-4">
                 <Minus />
                 <Scan />
               </div>
+            </div>
+
+            <div className=" border-b">
+              {/* data table */}
+             
+                <DataTable columns={columns} data={data} />
+              
             </div>
           </div>
         </div>
