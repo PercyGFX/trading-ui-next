@@ -204,8 +204,20 @@ export default function Page() {
               </div>
             </div>
 
-            <div className=" h-14 border-b flex  justify-between items-center px-5">
-              <div> </div>
+            <div className=" h-14 border-b flex  justify-between items-center px-5 ">
+              <div className="flex gap-x-3">
+                {/* <div className="border-b-blue-700 border-b-2 h-12 items-center flex"> */}
+                <Button className=" bg-muted text-primary px-12 hover:bg-muted">
+                  Open Trades (2)
+                </Button>
+                {/* </div> */}
+                <Button className=" bg-background text-primary px-12 hover:text-muted">
+                  Pending Trades (5)
+                </Button>
+                <Button className=" bg-background text-primary px-12 hover:text-muted">
+                  Account History
+                </Button>
+              </div>
               <div className=" flex gap-x-4">
                 <Minus />
                 <Scan />
