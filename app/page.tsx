@@ -1,7 +1,15 @@
 import Image from "next/image";
-import { Camera, Package2, Home, ShoppingCart, Package, Plus } from "lucide-react";
+import {
+  Package2,
+  Home,
+  ShoppingCart,
+  Package,
+  Plus,
+  EllipsisVertical,
+} from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
-
 
 export default function Page() {
   return (
@@ -42,18 +50,42 @@ export default function Page() {
           </Link>
         </nav>
       </aside>
-      {/* left column */}
-      <div className=" flex lg:pr-14">
+      {/* content */}
+      <div className=" flex lg:pr-14 min-h-screen">
+        {/* left side column */}
         <div className="flex flex-col w-8/12">
-          <div className=" bg-background h-14 border-b "></div>
+          {/* left side header */}
+          <div className=" bg-background h-14 border-b flex justify-between items-center">
+            <div className="h-14 w-16 flex justify-center items-center  border-r">
+              <Image src="/Logo.png" alt="Logo" width={32} height={32} />
+            </div>
+            <div className="mr-2">
+              <Button className=" bg-[#2962FF] text-primary">
+                {" "}
+                <EllipsisVertical className=" bg-[#5280FF] text-primary rounded-sm py-1 mr-3" />
+                Deposit
+              </Button>
+            </div>
+          </div>
+          {/* header end */}
+
+         <div className=" h-2/4 border-b">
+          {/* chart area */}
+         
+          </div>
+
+          <div>data table</div>
         </div>
-        <div className="border-l w-4/12 bg-background h-screen">
+        {/* right side column */}
+        <div className="border-l w-4/12 bg-background">
           <div className=" bg-background h-14 border-b ml-5 mr-4 p-1.5 flex justify-between items-center">
             <p className=" uppercase font-semibold p-3">news</p>
             <Plus />
           </div>
-          <div className="flex-1 overflow-y-auto m-5">
-            
+          <div className="">
+            <ScrollArea className="max-h-screen rounded-md p-4">
+              {/* scroll stuff here */}
+            </ScrollArea>
           </div>
         </div>
       </div>
