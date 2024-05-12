@@ -10,10 +10,14 @@ import {
   Bell,
   Book,
   ArrowLeftFromLine,
+  ChevronDown,
+  Minus,
+  Scan,
 } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 
 export default function Page() {
@@ -109,8 +113,105 @@ export default function Page() {
           {/* header end */}
 
           <div className=" h-2/4 border-b">{/* chart area */}</div>
+          {/* data table area */}
+          <div className=" bg-background">
+            {/* accoutt rowrow */}
+            <div className=" h-16 border-b flex  justify-between items-center px-5">
+              <div className="flex items-center gap-4">
+                <Avatar className="hidden h-9 w-9 sm:flex">
+                  <AvatarImage src="/usa.png" alt="Avatar" />
+                  <AvatarFallback>OM</AvatarFallback>
+                </Avatar>
+                <div className="grid gap-1">
+                  <p className="text-sm font-medium leading-none uppercase text-muted-foreground">
+                    account
+                  </p>
+                  <div className=" flex">
+                    <p className="text-sm ">986598566986</p>
+                    <ChevronDown className=" text-[#2962FF] ml-5" />
+                  </div>
+                </div>
+              </div>
 
-          <div>data table</div>
+              <div className="flex items-center gap-4">
+                <div className="grid gap-1">
+                  <p className="text-sm font-medium leading-none uppercase text-muted-foreground">
+                    balance
+                  </p>
+
+                  <p className="text-sm ">101,873.51 USD</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="grid gap-1">
+                  <p className="text-sm font-medium leading-none uppercase text-muted-foreground">
+                    EQUITY
+                  </p>
+
+                  <p className="text-sm ">99,237.07</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="grid gap-1">
+                  <p className="text-sm font-medium leading-none uppercase text-muted-foreground">
+                    CREDIT
+                  </p>
+
+                  <p className="text-sm ">0.00</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="grid gap-1">
+                  <p className="text-sm font-medium leading-none uppercase text-muted-foreground">
+                    MARGIN
+                  </p>
+
+                  <p className="text-sm ">3,931.98</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="grid gap-1">
+                  <p className="text-sm font-medium leading-none uppercase text-muted-foreground">
+                    FREE MARGIN
+                  </p>
+
+                  <p className="text-sm ">95,286.78</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="grid gap-1">
+                  <p className="text-sm font-medium leading-none uppercase text-muted-foreground">
+                    MARGIN LEVEL
+                  </p>
+
+                  <p className="text-sm ">2,523.38%</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="grid gap-1">
+                  <p className="text-sm font-medium leading-none uppercase text-muted-foreground">
+                    PROFIT
+                  </p>
+
+                  <p className="text-sm ">15,000,000</p>
+                </div>
+              </div>
+            </div>
+
+            <div className=" h-14 border-b flex  justify-between items-center px-5">
+              <div> </div>
+              <div className=" flex gap-x-4">
+                <Minus />
+                <Scan />
+              </div>
+            </div>
+          </div>
         </div>
         {/* right side column */}
         <div className="border-l w-4/12 bg-background">
