@@ -1,6 +1,5 @@
-'use client'
+"use client";
 import Image from "next/image";
-import { ReactNode } from "react";
 
 import {
   Plus,
@@ -23,164 +22,7 @@ import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 import { DataTable } from "@/components/data-table";
-import { ColumnDef } from "@tanstack/react-table";
-
-interface DataType {
-  ticket: string;
-  symbol: string;
-  time: string;
-  type: string;
-  lot: string;
-  openPrice: string;
-  stopLoss: string;
-  takeProfit: string;
-  currentPrice: string;
-  swap: string;
-  profit: string;
-  icon: any;
-}
-
-const columns: ColumnDef<DataType>[] = [
-  {
-    accessorKey: "ticket",
-    header: "Ticket",
-  },
-  {
-    accessorKey: "symbol",
-    header: "Symbol",
-    cell: ({ getValue, row }: any) => (
-      <div className="flex items-center space-x-2">
-        <Avatar>
-          <AvatarFallback></AvatarFallback>
-        </Avatar>
-        <span>{getValue()}</span>
-      </div>
-    ),
-  },
-
-  {
-    accessorKey: "time",
-    header: "Time",
-    cell: ({ getValue }: any) => {
-      const [date, time] = getValue().split(" ");
-      return (
-        <div className=" flex flex-col items-center">
-          <span>{date}</span>
-          <br />
-          <span>{time}</span>
-        </div>
-      );
-    },
-  },
-  {
-    accessorKey: "type",
-    header: "Type",
-    cell: ({ getValue }: any) => (
-      <span className="text-green-500">{getValue()}</span>
-    ),
-  },
-  {
-    accessorKey: "lot",
-    header: "Lot",
-  },
-  {
-    accessorKey: "openPrice",
-    header: "Open Price",
-  },
-  {
-    accessorKey: "stopLoss",
-    header: "Stop Loss",
-  },
-  {
-    accessorKey: "takeProfit",
-    header: "Take Profit",
-  },
-  {
-    accessorKey: "currentPrice",
-    header: "Current Price",
-  },
-  {
-    accessorKey: "swap",
-    header: "Swap",
-  },
-  {
-    accessorKey: "profit",
-    header: "Type",
-    cell: ({ getValue }: any) => (
-      <span className="text-green-500">{getValue()}</span>
-    ),
-  },
-
-  {
-    accessorKey: "icon",
-    header: <EllipsisVertical /> as any, 
-  },
-];
-
-const data = [
-  {
-    ticket: "2415959",
-    symbol: "AAPL",
-    time: "12:03:45 2024-03-13",
-    type: "BUY",
-    lot: "1",
-    openPrice: "1.12000,6698",
-    stopLoss: "0",
-    takeProfit: "0",
-    currentPrice: "1.09764",
-    swap: "-279.16",
-    profit: "12,234.000, 596",
-    icon: "",
-  },
-
-  {
-    ticket: "2415959",
-    symbol: "AAPL",
-    time: "12:03:45 2024-03-13",
-    type: "BUY",
-    lot: "1",
-    openPrice: "1.12000,6698",
-    stopLoss: "0",
-    takeProfit: "0",
-    currentPrice: "1.09764",
-    swap: "-279.16",
-    profit: "12,234.000, 596",
-    icon: "",
-  },
-
-  {
-    ticket: "2415959",
-    symbol: "AAPL",
-    time: "12:03:45 2024-03-13",
-    type: "BUY",
-    lot: "1",
-    openPrice: "1.12000,6698",
-    stopLoss: "0",
-    takeProfit: "0",
-    currentPrice: "1.09764",
-    swap: "-279.16",
-    profit: "12,234.000, 596",
-    icon: "",
-  },
-
-  {
-    ticket: "2415959",
-    symbol: "AAPL",
-    time: "12:03:45 2024-03-13",
-    type: "BUY",
-    lot: "1",
-    openPrice: "1.12000,6698",
-    stopLoss: "0",
-    takeProfit: "0",
-    currentPrice: "1.09764",
-    swap: "-279.16",
-    profit: "12,234.000, 596",
-    icon: "",
-  },
-
-  // Add more data objects as needed
-];
-
+import { columns, data } from "@/components/table-data";
 
 export default function Page() {
   return (
@@ -256,18 +98,18 @@ export default function Page() {
         </nav>
       </aside>
       {/* content */}
-      <div className=" flex lg:pr-14 min-h-screen">
+      <div className=" flex lg:flex-row flex-col lg:pr-14 min-h-screen">
         {/* left side column */}
-        <div className="flex flex-col w-8/12">
+        <div className="flex flex-col lg:w-8/12 w-full md:pr-14 lg:pr-0">
           {/* left side header */}
           <div className=" bg-background h-14 border-b flex justify-between items-center">
             <div className="h-14 w-16 flex justify-center items-center  border-r">
               <Image src="/Logo.png" alt="Logo" width={32} height={32} />
             </div>
             <div className="mr-2">
-              <Button className=" bg-[#2962FF] text-primary">
+              <Button className=" bg-[#2962FF] text-primary hover:bg-[#5280FF]">
                 {" "}
-                <EllipsisVertical className=" bg-[#5280FF] text-primary rounded-sm py-1 mr-3" />
+                <EllipsisVertical className=" bg-[#5280FF] text-primary rounded-sm py-1 mr-3 " />
                 Deposit
               </Button>
             </div>
@@ -278,7 +120,7 @@ export default function Page() {
           {/* data table area */}
           <div className=" bg-background">
             {/* accoutt rowrow */}
-            <div className=" h-16 border-b flex  justify-between items-center px-5 overflow-scroll gap-x-2">
+            <div className=" h-16 border-b flex  justify-between items-center px-5 overflow-scroll gap-x-4">
               <div className="flex items-center gap-4">
                 <Avatar className="hidden h-9 w-9 sm:flex">
                   <AvatarImage src="/usa.png" alt="Avatar" />
@@ -367,7 +209,7 @@ export default function Page() {
             </div>
 
             <div className=" h-14 border-b flex  justify-between items-center px-5 ">
-              <div className="flex gap-x-3">
+              <div className="flex gap-x-3 overflow-scroll">
                 {/* <div className="border-b-blue-700 border-b-2 h-12 items-center flex"> */}
                 <Button className=" bg-muted text-primary px-12 hover:bg-muted">
                   Open Trades (2)
@@ -389,14 +231,13 @@ export default function Page() {
 
             <div className=" border-b">
               {/* data table */}
-             
-                <DataTable columns={columns} data={data} />
-              
+
+              <DataTable columns={columns} data={data} />
             </div>
           </div>
         </div>
         {/* right side column */}
-        <div className="border-l w-4/12 bg-background">
+        <div className="border-l lg:w-4/12 bg-background h-screen md:pr-14 lg:pr-0">
           <div className=" bg-background h-14 border-b ml-5 mr-4 p-1.5 flex justify-between items-center">
             <p className=" uppercase font-semibold p-3">news</p>
             <Plus />
